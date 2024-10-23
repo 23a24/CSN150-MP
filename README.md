@@ -1,1 +1,24 @@
-# In this github midterm project, I will be documenting my wireguard setup journey and how I got from point a to point b! And what I've learned along the way of setting up wireguard through ubuntu on digitalocean! This is very new to me so it was quite an interesting experience overall, wasn't as difficult as intimidating as it seemed at first, but wasn't really that easy either as some issues arose, all I got to say is you --MUST-- carefully follow instructions or you will NOT have wireguard setup at all on your ubuntu server or any server at all. I appreicate having this opportunity to try something new, more specifically this. 
+# Cybersecurity 150 Midterm Project
+
+## Name of Project
+Setting Up Wireguard On Ubuntu (DigitalOcean)
+
+## Purpose
+To setup wireguard successfully onto a ubuntu server on digitalocean!
+
+## Equipment
+* DigitalOcean (Using Ubuntu Droplet Server)
+
+* DigitalOcean's Server Console 
+
+## Link to Documentation Followed
+- [DigitalOcean.com](https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-22-04#creating-the-wireguard-peer-s-configuration-file)
+
+##### Youtube Video 1: [Set Up Your Own Wireguard VPN Server on Ubuntu 22.04
+- ZacsTech](https://youtu.be/FpbPeTuGNrM?si=Y0lWS6Nswe_YVN8Z) 
+
+## Steps I followed
+Installed wireguard using the package manager, managed to generate the appropriate cryptographic keys with wg genkey and wg pubkey don't mess up like I did doing this it was a wild goose chase, created /etc/wireguard/wg0.conf and added the right interface, private key, ip addresses, and listening port, edited /etc/sysctl.conf that enables both ipv4 + ipv6 forwarding, ran sudo sysctl -p to apply changes to system's ip forwarding configuration, used sudo systemctl start wg-quick@wg0 and sudo systemctl enable wg-quick@wg0 to start and wireguard service would run on start, confirmed wireguard was running by using sudo systemctl status wg-quick@wg0, ran ip a show wg0 to check the interface was up and configured properly, pinged the wireguard servers internal ip (10.8.0.1) to confirm successful connectivity, used sudo journalctl -u wg-quick@wg0 to monitor wireguard logs.
+
+## Problems
+Issues I've had were mostly related to losing my private key which lead me to a little goose chase of my own finding it back, missing the wg0.conf file, package update confusion that lead to log errors and I had to reconfigure settings, readd command lines to the console so on... Basically triple check the directions while you FOLLOW THEM!!! Overall a lot of commands just to get wireguard installed onto a digitalocean ubuntu droplet working properly I cannot stress enough making sure you type things out CORRECTLY! It is a fun experience and I would do it again as I would definately have way less mistakes in the long run looking back at this.
